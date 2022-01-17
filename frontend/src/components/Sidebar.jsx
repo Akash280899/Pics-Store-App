@@ -22,7 +22,7 @@ const Sidebar = ({ user, closeToggle }) => {
     }
 
     return (
-        <div className='flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar'>
+        <div className='flex flex-col justify-between bg-gray-100 h-full overflow-y-scroll min-w-210 hide-scrollbar'>
             <div className='flex flex-col'>
                 <Link
                     to='/'
@@ -45,7 +45,7 @@ const Sidebar = ({ user, closeToggle }) => {
                     <h3 className='mt-2 px-5 text-base 2xl:text-xl'>Discover Categories</h3>
                     {categories.slice(0, categories.length-1).map((category) => (
                         <NavLink
-                            to={`/category/${category}`}
+                            to={`/category/${category.name}`}
                             className={({isActive}) => (
                                 isActive ? isActiveStyle : isNotActiveStyle
                             )}
@@ -57,6 +57,16 @@ const Sidebar = ({ user, closeToggle }) => {
                     ))}
                 </div>
             </div>
+            { user && (
+                <Link
+                    to={`user-profile/${user._id}`}
+                    className='flex items-center my-5 mb-3 gap-2 p-2 bg-white rounded-lg shadow-lg mx-3'
+                    onClick={handleSideBar}
+                >
+                    <img src={user.image} alt="user-logo" className='w-10 h-10 rounded-lg'/>
+                    <p>{user.userName}</p>
+                </Link>
+            )}
         </div>
     )
 }
