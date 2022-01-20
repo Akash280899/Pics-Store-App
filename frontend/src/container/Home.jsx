@@ -7,16 +7,15 @@ import { client } from '../client'
 import logo from '../assets/logo.png'
 import Pins from './Pins'
 import { userQuery } from '../utils/data'
+import { fetchUser } from '../utils/fetchUser'
 
 
 const Home = () => {
-    const localValue = localStorage.getItem('user')
-
     const [user, setUser] = useState(null)
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const scrollRef = useRef(null)
 
-    const userInfo = localValue !== 'undefined' ? JSON.parse(localValue) : localStorage.clear()
+    const userInfo = fetchUser();
 
     useEffect(() => {
         const query = userQuery(userInfo?.googleId)
