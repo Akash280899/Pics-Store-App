@@ -14,7 +14,7 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
     const navigate = useNavigate();
     const user = fetchUser();
 
-    const saved = !!(save?.filter((item) => item.postedBy._id === user?.googleId))?.length
+    const saved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length
 
     const savePin = (id) => {
         if(!saved) {
@@ -64,7 +64,7 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                             {saved ? (
                                 <button
                                     type='button'
-                                    className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
+                                    className='bg-cyan-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                                 >
                                     {save?.length} Saved
                                 </button>
@@ -75,7 +75,7 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                                         savePin(_id)
                                     }}
                                     type='button'
-                                    className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
+                                    className='bg-cyan-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                                 >
                                     Save
                                 </button>
@@ -90,10 +90,9 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                                         className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
                                     >
                                         <BsFillArrowUpRightCircleFill />
-                                        {destination.length > 20 ? 
-                                            destination.slice(8,19) : 
-                                            destination.slice(8)
-                                        }
+                                        { destination.length > 15 ? 
+                                            `${destination.slice(0,15)}...` 
+                                            : destination}
                                     </a>
                             )}
                             {postedBy?._id === user?.googleId && (
