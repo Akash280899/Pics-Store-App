@@ -60,7 +60,6 @@ const PinDetail = ({ user }) => {
     },[pinId])
 
     if(!pinDetails) return <Spinner message='Fetching data...'/>
-    console.log(pinDetails);
     return (
         <>
         <div className='flex xl:flex-row flex-col m-auto bg-white' style={{ maxWidth: '1500px', borderRadius: '32px' }}>
@@ -83,9 +82,6 @@ const PinDetail = ({ user }) => {
                             <MdDownloadForOffline />
                         </a>
                     </div>
-                    <a href={pinDetails.destination} target="_blank" rel="noreferrer">
-                        {pinDetails.destination}
-                    </a>
                 </div>
                 <div>
                     <h1 className='className="text-4xl font-bold break-words mt-3"'>
@@ -155,7 +151,7 @@ const PinDetail = ({ user }) => {
                 <MasonryLayout pins={pins}/>
             </>
         ) : (
-            <Spinner message="Loading more..." />
+            <Spinner message="If pics with same category presents, that will appear here..." />
         )}
         </>
     )

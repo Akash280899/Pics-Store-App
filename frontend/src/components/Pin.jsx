@@ -45,7 +45,7 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 onClick={() => navigate(`/pin-detail/${_id}`)}
-                className='relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
+                className='relative cursor-pointer w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
             >
                 <img src={(urlFor(image).width(250).url())} alt="pin-image" className='rounded-lg w-full'/>
                 {hovered && (
@@ -53,12 +53,12 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                         <div className='flex items-center justify-between'>
                             <div className='flex gap-2'>
                                 <a
-                                    className='bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none'
+                                    className='bg-cyan-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                                     href={`${image?.asset?.url}?dl=`}
                                     download
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <MdDownloadForOffline />
+                                    Download
                                 </a>
                             </div>
                             {saved ? (
@@ -81,20 +81,7 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                                 </button>
                             )}
                         </div>
-                        <div className='flex justify-between items-center gap-2 w-full'>
-                            {destination && (
-                                    <a
-                                        href={destination}
-                                        target="_blank"
-                                        rel='noreferrer'
-                                        className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
-                                    >
-                                        <BsFillArrowUpRightCircleFill />
-                                        { destination.length > 15 ? 
-                                            `${destination.slice(0,15)}...` 
-                                            : destination}
-                                    </a>
-                            )}
+                        <div className='flex justify-end items-center gap-2 w-full'>
                             {postedBy?._id === user?.googleId && (
                                 <button
                                     type="button"
@@ -102,9 +89,9 @@ const Pin = ({pin : {postedBy, image, _id, destination, save}}) => {
                                         e.stopPropagation();
                                         deletePin(_id);
                                     }}
-                                    className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
+                                    className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                                 >
-                                    <AiTwotoneDelete />
+                                    Delete
                                 </button>
                             )}
                         </div>

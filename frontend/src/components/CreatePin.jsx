@@ -9,7 +9,6 @@ const CreatePin = ({ user }) => {
 
     const [title, setTitle] = useState('');
     const [about, setAbout] = useState('');
-    const [destination, setDestination] = useState('');
     const [loading, setLoading] = useState(false);
     const [fields, setFields] = useState(false);
     const [category, setCategory] = useState(null);
@@ -43,12 +42,11 @@ const CreatePin = ({ user }) => {
     }
 
     const saveImage = () => {
-        if(title && about && destination && imageAsset?._id && category) {
+        if(title && about && imageAsset?._id && category) {
             const doc = {
                 _type: 'pin',
                 title,
                 about,
-                destination,
                 image: {
                   _type: 'image',
                   asset: {
@@ -127,7 +125,7 @@ const CreatePin = ({ user }) => {
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder='Title...'
                         value={title}
-                        className='outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2'
+                        className='outline-none text-lg sm:text-xl font-bold border-b-2 border-gray-200 p-2'
                     />
                     { user && (
                         <div className='flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg'>
@@ -144,14 +142,7 @@ const CreatePin = ({ user }) => {
                         onChange={(e) => setAbout(e.target.value)}
                         placeholder='Describe about image...'
                         value={about}
-                        className='outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2'
-                    />
-                    <input 
-                        type="text"
-                        onChange={(e) => setDestination(e.target.value)}
-                        placeholder='Destination Link here'
-                        value={destination}
-                        className='outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2'
+                        className='outline-none text-lg sm:text-xl font-bold border-b-2 border-gray-200 p-2'
                     />
                     <div className='flex flex-col'>
                         <div>
